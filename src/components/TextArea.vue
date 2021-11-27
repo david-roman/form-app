@@ -1,0 +1,56 @@
+<template>
+  <textarea 
+    v-model="description"
+    rows="5"
+    placeholder="Write a description of the NGO you are looking for."
+    :class="[active? 'selected' : null]"
+    @focus="active = true"
+    @blur="active = false"
+  />
+</template>
+
+<script>
+
+export default {
+    data() {
+        return {
+            description: "",
+            active: false
+        }
+    }
+}
+</script>
+
+<style scoped>
+    textarea {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+
+        position: relative;
+        margin: 0 auto;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-wrap: wrap;
+
+        align-items: center;
+        justify-content: flex-end;
+        box-sizing: border-box;
+        cursor: text;
+        outline: none;
+
+        border: var(--ms-border-width,1px) solid var(--ms-border-color,#d1d5db);
+        border-radius: var(--ms-radius,4px);
+        background: var(--ms-bg,#fff);
+        font-size: var(--ms-font-size,1rem);
+        font-family: inherit;
+        min-height: calc(var(--ms-border-width, 1px)*2 + var(--ms-font-size, 1rem)*var(--ms-line-height, 1.375) + var(--ms-py, .5rem)*2);
+        padding: var(--ms-py,.875rem);
+    }
+    .selected {
+        box-shadow: 0 0 0 var(--ms-ring-width,3px) var(--ms-ring-color,rgba(100,149,237,.18823529411764706));
+        border-radius: var(--ms-radius,4px) var(--ms-radius,4px) 0 0;
+    }
+</style>
