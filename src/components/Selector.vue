@@ -4,7 +4,6 @@
     :options="optionList"
     :searchable="true"
   />
-  <!-- <p>Selected: {{ selected }}</p> -->
 </template>
 
 <script>

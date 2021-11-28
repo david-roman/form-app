@@ -1,8 +1,7 @@
 <template>
   <div id="block">
-    <h3>NGO REQUIREMENTS FORM</h3>
     <br />
-    <p>Leave empty the fields you are not interested in.</p>
+    <p id="italics">Leave empty the fields you are not interested in.</p>
     <br />
     <p>Choose the NGO headquarters' country.</p>
     <Selector :optionList="countries" />
@@ -11,8 +10,16 @@
     <Selector :optionList="scopes" />
     <br />
     <p>Define the range of years of the NGO's establishment.</p>
+    <RangeSlider 
+      :min="minYear"
+      :max="maxYear"
+    />
     <br />
     <p>Define the range of members of the NGO.</p>
+    <RangeSlider 
+      :min="minYear"
+      :max="maxYear"
+    />
     <br />
     <p>Choose the NGO's used languages.</p>
     <MultiSelector :optionList="languages" />
@@ -40,6 +47,7 @@
 import Selector from "./Selector.vue"
 import MultiSelector from "./MultiSelector.vue"
 import TextArea from "./TextArea.vue"
+import RangeSlider from "./RangeSlider.vue"
 import { continents, countries, languagesAll } from "countries-list"
 
 export default {
@@ -47,7 +55,8 @@ export default {
     components: {
         Selector,
         MultiSelector,
-        TextArea
+        TextArea,
+        RangeSlider
     },
     data() {
         return {
@@ -65,41 +74,25 @@ export default {
                         'Grants from Governments',
                         'Membership fees or dues',
                         'Product sales and business services',
-                        'Other sources', ],
-            generalAreas: ['Area']
+                        'Other sources'],
+            generalAreas: ['Area'],
+            minYear: 1950,
+            maxYear: 2022
         }
     }
 }
 </script>
 
+<style scoped src="../assets/styles/button.css" />
+
 <style scoped>
     #block {
         padding-inline: 20%;
     }
-    button {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-
-        position: relative;
-        margin: 0 auto;
-
-        display: flex;
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-wrap: wrap;
-
-        align-items: center;
-        justify-content: flex-end;
-        box-sizing: border-box;
-        cursor: text;
-        outline: none;
-
-        border: var(--ms-border-width,1px) solid var(--ms-border-color,#d1d5db);
-        border-radius: var(--ms-radius,4px);
-        background: var(--ms-bg,#fff);
-        font-size: var(--ms-font-size,1rem);
-        font-family: inherit;
-        min-height: calc(var(--ms-border-width, 1px)*2 + var(--ms-font-size, 1rem)*var(--ms-line-height, 1.375) + var(--ms-py, .5rem)*2);
-        padding: var(--ms-py,.875rem);
+    p {
+        font-size: 18px;
     }
-
+    #italics {
+        font-style: italic;
+    }
 </style>

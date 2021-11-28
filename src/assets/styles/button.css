@@ -1,0 +1,25 @@
+button {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+
+    position: relative;
+    margin: 0 auto;
+
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    cursor: text;
+    outline: none;
+
+    border: var(--ms-border-width,1px) solid var(--ms-border-color,#d1d5db);
+    border-radius: var(--ms-radius,4px);
+    background: var(--ms-bg,#fff);
+    font-size: var(--ms-font-size,1rem);
+    font-family: inherit;
+    min-height: calc(var(--ms-border-width, 1px)*2 + var(--ms-font-size, 1rem)*var(--ms-line-height, 1.375) + var(--ms-py, .5rem)*2);
+    padding: var(--ms-py,.875rem);
+}

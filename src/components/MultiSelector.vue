@@ -6,7 +6,6 @@
     :closeOnSelect="false"
     :searchable="true"
   />
-  <!-- <p>Selected: {{ selected }}</p> -->
 </template>
 
 <script>
