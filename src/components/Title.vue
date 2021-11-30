@@ -1,7 +1,7 @@
 <template>
   <div id="titleArea">
     <h1 id="title">
-      REQUIREMENTS FORM
+      {{ title }}
     </h1>
   </div>
 </template>
@@ -9,6 +9,9 @@
 <script>
 export default {
     name: 'Title',
+    props: {
+        title: String,
+    },
 }
 </script>
 

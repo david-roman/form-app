@@ -1,32 +1,22 @@
 <template>
-  <!-- <img
-    alt="Earth"
-    src="./assets/blue_earth.png"
-    width="300"
-    height="300"
-  >
-  <br /><br /> -->
-  <Title />
-  <br /><br />
-  <ReqForm />
-  <br /><br />
+  <Header />
+  <router-view />
 </template>
 
 <script>
-import Title from './components/Title.vue'
-import ReqForm from './components/ReqForm.vue'
+import Header from "./components/Header.vue"
 
 export default {
   name: 'App',
   components: {
-    Title,
-    ReqForm
+    Header
   }
 }
 </script>
 
 <style>
 html {
+  background-color: rgba(100, 148, 237, 0.048);
   margin: 0;
   padding: 0;
 }
@@ -41,9 +31,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #3d3d3d;
-  margin-top: 60px;
+  margin-bottom: 60px;
 }
-body {
-  background-color: whitesmoke;
+
+:root {
+    --ms-bg: white;
+    --ms-tag-bg: cornflowerblue;
+    --ms-tag-color: white;
+    --ms-ring-color: #3B82F630;
+    --ms-option-bg-selected: cornflowerblue;
+    --ms-option-bg-selected-pointed: cornflowerblue;
+    --ms-border-color: cornflowerblue;
 }
+::selection {
+    color: white;
+    background: cornflowerblue;
+}
+
 </style>

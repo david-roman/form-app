@@ -1,18 +1,14 @@
-button {
+a {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+
     font-family: Avenir, Helvetica, Arial, sans-serif;
 
-    position: relative;
-    margin: 0 auto;
-
-    display: flex;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-wrap: wrap;
-
-    align-items: center;
-    justify-content: flex-end;
     box-sizing: border-box;
-    cursor: text;
+    cursor: pointer;
     outline: none;
 
     border: var(--ms-border-width,1px) solid var(--ms-border-color,#d1d5db);
@@ -23,3 +19,7 @@ button {
     min-height: calc(var(--ms-border-width, 1px)*2 + var(--ms-font-size, 1rem)*var(--ms-line-height, 1.375) + var(--ms-py, .5rem)*2);
     padding: var(--ms-py,.875rem);
 }
+a.hover {
+    background-color: var(--ms-option-bg-pointed,#f3f4f6);
+}
+
