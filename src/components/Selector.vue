@@ -3,6 +3,7 @@
     v-model="selected"
     :options="optionList"
     :searchable="true"
+    @="$emit('change-val', selected)"
   />
 </template>
 
@@ -18,6 +19,7 @@ export default {
     props: {
         optionList: Array,
     },
+    emits: ['change-val'],
     data() { 
         return {
             selected: ""

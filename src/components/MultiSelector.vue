@@ -5,7 +5,7 @@
     :options="optionList"
     :closeOnSelect="false"
     :searchable="true"
-    @="$emit('change-val', selected)"
+    @="emitSelected()"
   />
 </template>
 
@@ -20,11 +20,23 @@ export default {
     },
     props: {
         optionList: Array,
+        area: {
+            type: String,
+            default: ""
+        }
     },
     emits: ['change-val'],
     data() { 
         return {
             selected: []
+        }
+    },
+    methods: {
+        emitSelected() {
+            if (this.area != "")
+                this.selected = [this.area, ...this.selected];
+
+            this.$emit('change-val', this.selected);
         }
     }
 }

@@ -7,8 +7,9 @@
     <br />
     <Button
       :text="'Fill Form'"
-      :route="'/form'"
+      :route="'Form'"
     />
+    <br />
   </div>
 </template>
 

@@ -2,11 +2,11 @@
   <div id="block">
     <Button
       :text="'Home page'"
-      :route="'/'"
+      :route="'Home'"
     />
     <Button
       :text="'About'"
-      :route="'/about'"
+      :route="'About'"
     />
   </div>
 </template>

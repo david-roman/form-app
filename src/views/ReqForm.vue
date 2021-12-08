@@ -5,38 +5,69 @@
     <br />
     <p id="italics">Leave empty the fields you are not interested in.</p>
     <br />
-    <p>Choose the NGO headquarters' country.</p>
-    <Selector :optionList="countries" />
+    <p>Define the number of resulting NGOs.</p>
+    <SingleSlider
+      :min="minNGOs"
+      :max="maxNGOs"
+      @change-val="changeSelectedNGOs"
+    />
     <br />
-    <p>Select the NGO's action scope</p>
-    <Selector :optionList="scopes" />
+    <p>Choose the NGO headquarters' country.</p>
+    <MultiSelector
+      :optionList="countries"
+      @change-val="changeSelectedHQ"
+    />
+    <br />
+    <p>Select the NGO's action scope.</p>
+    <MultiSelector
+      :optionList="scopes"
+      @change-val="changeSelectedScope"
+    />
     <br />
     <p>Define the range of years of the NGO's establishment.</p>
-    <RangeSlider 
+    <DoubleSlider
       :min="minYear"
+      :minVal="minYear"
       :max="maxYear"
+      :maxVal="maxYear"
+      @change-val="changeSelectedYears"
     />
     <br />
     <p>Define the range of members of the NGO.</p>
-    <RangeSlider 
-      :min="minYear"
-      :max="maxYear"
+    <DoubleSlider 
+      :min="minMembers"
+      :minVal="minMembers"
+      :max="maxMembers"
+      :maxVal="maxMembers"
+      @change-val="changeSelectedMembers"
+    />
+    <br />
+    <p>Select the NGO's funding methods</p>
+    <MultiSelector
+      :optionList="funding"
+      @change-val="changeSelectedFundings"
     />
     <br />
     <p>Choose the NGO's used languages.</p>
-    <MultiSelector :optionList="languages" />
-    <br />
-    <p>Select the NGO's funding methods</p>
-    <MultiSelector :optionList="funding" />
+    <MultiSelector
+      :optionList="languages"
+      @change-val="changeSelectedLanguages"
+    />
     <br />
     <p>Write a description about the desired NGO.</p>
-    <TextArea />
-    <br />
+    <TextArea @change-val="changeDescription" />
+    <br /><br />
     <p>Choose the NGO's continents of activity.</p>
-    <MultiSelector :optionList="continents" />
+    <MultiSelector
+      :optionList="continents"
+      @change-val="changeSelectedContinents"
+    />
     <br />
     <p>Select the NGO's countries of activity.</p>
-    <MultiSelector :optionList="countries" />
+    <MultiSelector
+      :optionList="countries"
+      @change-val="changeSelectedCountries"
+    />
     <br />
     <p>Choose the NGO's general areas of activity.</p>
     <MultiSelector
@@ -45,28 +76,34 @@
     />
     <br />
     <li
-      v-for="area in selectedAreas"
+      v-for="area in reqs.generalAreas"
       :key="area"
     >
       <p>Select the specific areas of activity of {{ area }}.</p>
-      <MultiSelector :optionList="specificAreas[generalAreas.indexOf(area)]" />
+      <MultiSelector
+        :optionList="specificAreas[generalAreas.indexOf(area)]"
+        :area="area"
+        @change-val="changeSelectedSpecific"
+      />
       <br />
     </li>
     <br />
     <Button
       :text="'Submit'"
-      :route="'/'"
+      :route="'Results'"
+      :submit="true"
+      :reqs="reqs"
     />
-    <br /><br /><br /><br /><br /><br />
   </div>
 </template>
 
 <script>
 import Title from '../components/Title.vue'
-import Selector from "../components/Selector.vue"
+import SingleSlider from '../components/SingleSlider.vue'
+// import Selector from "../components/Selector.vue"
 import MultiSelector from "../components/MultiSelector.vue"
 import TextArea from "../components/TextArea.vue"
-import RangeSlider from "../components/RangeSlider.vue"
+import DoubleSlider from "../components/DoubleSlider.vue"
 import Button from "../components/Button.vue"
 import { continents, countries, languagesAll } from "countries-list"
 
@@ -74,18 +111,29 @@ export default {
     name: 'ReqForm',
     components: {
         Title,
-        Selector,
+        SingleSlider,
+        // Selector,
         MultiSelector,
         TextArea,
-        RangeSlider,
+        DoubleSlider,
         Button
     },
     data() {
         return {
-            // Selection values
+
+            // Form values
+            minNGOs: 1,
+            maxNGOs: 20,
+            minYear: 1950,
+            maxYear: 2022,
+    
+            minMembers: 1,
+            maxMembers: 500,
+
             continents: Object.values(continents).sort(),
             countries: Object.keys(countries).map(key => countries[key].name).sort(),
             languages: Object.keys(languagesAll).map(key => languagesAll[key].name).sort(),
+
             scopes: ['International', 'Local', 'National', 'Regional'],
 
             funding: ['Donations and grants from domestic sources',
@@ -125,17 +173,70 @@ export default {
                 ['Aging', 'Information and Communications Technologies', 'Poverty', 'Cooperative', 'Social policy', 'Conflict', 'Employment', 'Indigenous issues', 'Technical cooperation', 'Youth', 'Disabled persons'], 
                 ['Morbidity and mortality', 'Reproduction, family formation and the status of women', 'Population structure', 'Population distribution and internal migration', 'International migration', 'Population growth']
             ],
-            minYear: 1950,
-            maxYear: 2022,
 
-            // Form values
-            selectedAreas: []
+            // Selected values
+            reqs: {
+                ngoNum: 5,
+                hq: [],
+                scope: [],
+                established: [1950, 2022],
+                members: [1, 500],
+                fundings: [],
+                languages: [],
+                description: "",
+                continents: [],
+                countries: [],
+                generalAreas: [],
+                specificAreas: []
+            },
         }
     },
     methods: {
+        changeSelectedNGOs(e) {
+            this.reqs.ngoNum = e;
+        },
+        changeSelectedHQ(e) {
+            this.reqs.hq = e;
+        },
+        changeSelectedScope(e) {
+            this.reqs.scope = e;
+        },
+        changeSelectedYears(e) {
+            this.reqs.established = e;
+        },
+        changeSelectedMembers(e) {
+            this.reqs.members = e;
+        },
+        changeSelectedFundings(e) {
+            this.reqs.fundings = e;
+        },
+        changeSelectedLanguages(e) {
+            this.reqs.languages = e;
+        },
+        changeDescription(e) {
+            this.reqs.description = e;
+        },
+        changeSelectedContinents(e) {
+            this.reqs.continents = e;
+        },
+        changeSelectedCountries(e) {
+            this.reqs.countries = e;
+        },
         changeSelectedAreas(e) {
-            this.selectedAreas = e;
-        }
+            const oldAreas = this.reqs.generalAreas;
+            const oldSpecific = this.reqs.specificAreas;
+            this.reqs.generalAreas = e;
+            this.reqs.specificAreas = [];
+
+            for (let i = 0; i < this.reqs.generalAreas.length; i++) {
+                let index = oldAreas.indexOf(this.reqs.generalAreas[i]);
+                this.reqs.specificAreas[i] = oldSpecific[index];
+            }
+        },        
+        changeSelectedSpecific(e) {
+            const area = e.shift()
+            this.reqs.specificAreas[this.reqs.generalAreas.indexOf(area)] = e;
+        },
     }
 }
 </script>

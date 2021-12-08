@@ -1,6 +1,7 @@
 <template>
   <Slider 
-    v-model="values"
+    v-model="value"
+    @="$emit('change-val', value)"
   />
 </template>
 
@@ -13,13 +14,10 @@ export default {
     components: {
         Slider
     },
-    props: {
-        // min: Number,
-        // max: Number
-    },
+    emits: ['change-val'],
     data() { 
         return {
-            values: [1950, 2022]
+            value: 5
         }
     }
 }
