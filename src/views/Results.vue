@@ -6,9 +6,9 @@
     <p>These are the suggested NGOs that best suit your preferences:</p>
     <br />
     <li
-      v-for="ngo in resultingNGOs"
+      v-for="ngo in resultingNGOs[0]"
       :key="ngo"
-    >
+    >   
       <Result :ngoData="ngo" />
       <br />
     </li>
@@ -49,27 +49,28 @@ export default {
     },
     methods: {
         async submitReqs() {
-            const activities = {};
+            const activities = [];
 
-            for (let i = 0; i < this.generalAreas.length; i++) {
-                activities[this.generalAreas[i]] = this.specificAreas[i];
+            if (this.specificAreas != undefined && this.specificAreas.length > 0) {
+                for (const act in this.specificAreas)
+                    activities.concat(act);
             }
 
             const reqs = {
-                'ngoNum': this.ngoNum,
-                'hq': this.hq,
-                'scope': this.scope,
-                'established': this.established,
-                'members': this.members,
-                'fundings': this.fundings,
-                'languages': this.languages,
+                'ngoNum': parseInt(this.ngoNum),
+                'hq': this.listIfString(this.hq),
+                'scope': typeof this.scope == 'string' ? [this.scope] : this.scope,
+                'established': this.established.map((x) => parseInt(x)),
+                'members': this.members.map((x) => parseInt(x)),
+                'funding': this.listIfString(this.fundings),
+                'languages': this.listIfString(this.languages),
                 'description': this.description,
-                'continents': this.continents,
-                'countries': this.countries,
+                'continents': this.listIfString(this.continents),
+                'countries': this.listIfString(this.countries),
                 'activities': activities
             }
 
-            const res = await fetch('http://localhost:3002/recommended', {
+            const res = await fetch('http://192.168.119.232:3002/recommended', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
@@ -77,9 +78,11 @@ export default {
                 },
                 body: JSON.stringify(reqs)
             })
-            const result = await res.json()
+            const result = await res.json();
             this.resultingNGOs = result;
-
+        },
+        listIfString(val) {
+            return typeof val == 'string' ? [val] : val;
         }
     }
 }

@@ -42,7 +42,7 @@
       @change-val="changeSelectedMembers"
     />
     <br />
-    <p>Select the NGO's funding methods</p>
+    <p>Select the NGO's funding methods.</p>
     <MultiSelector
       :optionList="funding"
       @change-val="changeSelectedFundings"
@@ -124,11 +124,11 @@ export default {
             // Form values
             minNGOs: 1,
             maxNGOs: 20,
-            minYear: 1950,
-            maxYear: 2022,
+            minYear: 1149,
+            maxYear: 2020,
     
             minMembers: 1,
-            maxMembers: 500,
+            maxMembers: 109000,
 
             continents: Object.values(continents).sort(),
             countries: Object.keys(countries).map(key => countries[key].name).sort(),
@@ -148,30 +148,33 @@ export default {
                 'Product sales and business services',
                 'Other sources'],
 
-            generalAreas: ['Conflict Resolution in Africa', 
-                'Economic and Social', 
+            generalAreas: [
                 'Financing for Development', 
-                'Gender Issues and Advancement of Women', 
+                'Economic and Social', 
                 'NEPAD', 
+                'Gender Issues and Advancement of Women', 
                 'Peace and Development in Africa', 
-                'Population',
-                'Public Administration', 
                 'Social Development', 
+                'Sustainable Development', 
+                'Conflict Resolution in Africa', 
                 'Statistics', 
-                'Sustainable Development'],
+                'Population', 
+                'Public Administration'
+            ] 
+,
 
             specificAreas:  [
-                ['Climate Change and Natural Resource Management', 'Agriculture and Food Security', 'Economic and Corporate Governance', 'Crosscutting issues (Gender and Capacity Development)', 'Human Development', 'Regional Integration and Infrastructure'], 
-                ['Women and poverty', 'Women and HIV/AIDS', 'Research', 'Women and armed conflict', 'Information and communication technologies', 'Women and the environment', 'Education and training of women', 'Women in power and decision-making', 'Men and boys', 'Millennium Development Goals', 'Violence against women', 'Women and the media', 'Human rights of women', 'Indigenous women', 'Women and health', 'Policy advice', 'Institutional mechanisms for the advancement of women', 'Advocacy and outreach', 'Capacity building', 'Service provision', 'The girl child', 'Trafficking in women and girls', 'Women and the economy'], 
-                ['International Cooperation in Tax Matters', 'Mobilizing domestic financial resources for development', 'Mobilizing international resources for development', 'Addressing systemic issues', 'International Trade as an engine for development', 'Increasing financial and technical cooperation for development', 'External debt'], 
-                ['Conflicts Resolution'], 
-                ['Ethics, Transparency and Accountability', 'Governance and Public Administration', 'Knowledge Systems and E-government', 'Public Service and Management Innovation', 'Public Financial Management', 'Socio-Economic Governance and Management'], 
+                ['International Cooperation in Tax Matters', 'Mobilizing international resources for development', 'Increasing financial and technical cooperation for development', 'International Trade as an engine for development', 'Mobilizing domestic financial resources for development', 'External debt', 'Addressing systemic issues'], 
+                ['Family', 'Development', 'Migration', 'Disabled Persons', 'Law of the Sea and Antarctica', 'Micro-Credit', 'Technical Cooperation', 'Atomic Energy', 'Extreme poverty', 'Information', 'Refugees', 'United Nations Reform', 'Peace and Security', 'Environment', 'United Nations Funding', 'Economics and Finance', 'Outer Space', 'Human Rights', 'International Law', 'Business and Industry', 'Justice', 'Religion', 'Industrial Development', 'Values', 'Social Development', 'Humanitarian Affairs', 'Children', 'Food', 'Intellectual Property', 'Criminal Justice', 'De-mining', 'Women/gender Equality', 'Agriculture', 'Population', 'Drug Control', 'Volunteerism', 'Statistics', 'Disarmament', 'Aging', 'Crime Prevention', 'Debt Relief', 'Decolonization', 'Indigenous Peoples', 'Torture', 'HIV/AIDS', 'Minority Rights', 'Water', 'International Security', 'Habitat', 'Sustainable Development', 'Biodiversity', 'Labour', 'Youth', 'Private Sector', 'Sports for Peace and Development', 'Energy', 'Financing for Development', 'Governance', 'Education', 'New Global Institutions', 'Taxation Policy', 'Least Developed Countries', 'Climate Change', 'Trade and Development', 'Women', 'Media', 'Culture', 'Coorporate Accountability', 'Violence', 'Safety', 'Citizenship and Governance', 'Science and Technology'], 
+                ['Regional Integration and Infrastructure', 'Economic and Corporate Governance', 'Climate Change and Natural Resource Management', 'Human Development', 'Agriculture and Food Security', 'Crosscutting issues (Gender and Capacity Development)'], 
+                ['Advocacy and outreach', 'Trafficking in women and girls', 'Men and boys', 'Women and poverty', 'Violence against women', 'Policy advice', 'Women in power and decision-making', 'Research', 'Education and training of women', 'Women and the economy', 'The girl child', 'Human rights of women', 'Women and the environment', 'Women and health', 'Indigenous women', 'Millennium Development Goals', 'Institutional mechanisms for the advancement of women', 'Women and the media', 'Women and armed conflict', 'Women and HIV/AIDS', 'Service provision', 'Capacity building', 'Information and communication technologies'], 
                 ['Development in Africa', 'Peace in Africa'], 
-                ['Sustainable development for Africa', 'Agriculture', 'Integrated decision-making', 'Indicators', 'Industrial development', 'Technology', 'Sanitation', 'Waste Management', 'Freshwater', 'Health', 'Trade and environment', 'Biotechnology', 'Forests', 'Toxic chemicals', 'Waste (hazardous)', 'Capacity-building', 'International cooperation for an enabling environment', 'Atmosphere', 'Major Groups', 'Waste (solid)', 'Means of Implementation (Trade, Finance, Technology, Tranfer, etc.)', 'Energy', 'Mining', 'Biodiversity', 'Marine Resources', 'Oceans and seas', 'Poverty', 'Land management', 'Finance', 'International law', 'Institutional arrangements', 'Sustainable development of SIDS', 'Transport', 'Disaster management and vulnerability', 'Desertification and Drought', 'Gender equality', 'Rural Development', 'Demographics', 'Sustainable development in a globalizing world', 'Science', 'Waste (radioactive)', 'Partnerships', 'Education', 'Protecting and managing the natural resources', 'Mountains', 'Information for decision-making and participation', 'Consumption and production patterns', 'Sustainable Tourism', 'Human settlements', 'Climate change'], 
-                ['Informal Sector Statistics', 'Development indicators', 'Crime and criminal justice statistics', 'Household Statistics', 'Environmental Accounts', 'Social Statistics and Social Monitoring', 'Statistical activities classification', 'Geographical names', 'Time-use statistics', 'International Comparison Programme', 'Services Statistics', 'Statistics on international trade in services', 'Civil registration systems', 'Official statistics, principles and practices', 'International migration', 'Methodological publications in statistics', 'Population and housing censuses', 'International Economic and Social Classifications', 'Poverty statistics', 'Country or region codes', 'Labour and Compensation', 'Disability Statistics', 'Demographic and social surveys', 'National accounting', 'Price and Quantity Statistics'], 
-                ['New Global Institutions', 'Disabled Persons', 'Agriculture', 'Technical Cooperation', 'Climate Change', 'Crime Prevention', 'Safety', 'Citizenship and Governance', 'Children', 'Values', 'Violence', 'Taxation Policy', 'Business and Industry', 'Statistics', 'Decolonization', 'Social Development', 'Law of the Sea and Antarctica', 'HIV/AIDS', 'Labour', 'Media', 'Least Developed Countries', 'Habitat', 'International Law', 'Energy', 'Science and Technology', 'Biodiversity', 'Minority Rights', 'Sustainable Development', 'Humanitarian Affairs', 'Women/gender Equality', 'Peace and Security', 'Environment', 'Atomic Energy', 'Torture', 'United Nations Reform', 'Information', 'Food', 'Intellectual Property', 'Aging', 'Financing for Development', 'Women', 'Disarmament', 'Volunteerism', 'Human Rights', 'Extreme poverty', 'Trade and Development', 'Governance', 'Private Sector', 'Water', 'Economics and Finance', 'Religion', 'Micro-Credit', 'Sports for Peace and Development', 'Outer Space', 'Coorporate Accountability', 'Culture', 'Education', 'United Nations Funding', 'Refugees', 'International Security', 'Drug Control', 'De-mining', 'Justice', 'Criminal Justice', 'Development', 'Migration', 'Family', 'Debt Relief', 'Industrial Development', 'Youth', 'Population', 'Indigenous Peoples'], 
-                ['Aging', 'Information and Communications Technologies', 'Poverty', 'Cooperative', 'Social policy', 'Conflict', 'Employment', 'Indigenous issues', 'Technical cooperation', 'Youth', 'Disabled persons'], 
-                ['Morbidity and mortality', 'Reproduction, family formation and the status of women', 'Population structure', 'Population distribution and internal migration', 'International migration', 'Population growth']
+                ['Disabled persons', 'Aging', 'Information and Communications Technologies', 'Technical cooperation', 'Social policy', 'Poverty', 'Employment', 'Cooperative', 'Indigenous issues', 'Youth', 'Conflict'], 
+                ['Information for decision-making and participation', 'International cooperation for an enabling environment', 'Partnerships', 'Waste Management', 'Land management', 'Toxic chemicals', 'Consumption and production patterns', 'Health', 'Gender equality', 'Indicators', 'Oceans and seas', 'Atmosphere', 'Mountains', 'Waste (hazardous)', 'Technology', 'Forests', 'Sustainable development in a globalizing world', 'Means of Implementation (Trade, Finance, Technology, Tranfer, etc.)', 'Demographics', 'Sanitation', 'Major Groups', 'International law', 'Biotechnology', 'Industrial development', 'Capacity-building', 'Freshwater', 'Agriculture', 'Human settlements', 'Trade and environment', 'Marine Resources', 'Mining', 'Integrated decision-making', 'Disaster management and vulnerability', 'Biodiversity', 'Waste (solid)', 'Sustainable Tourism', 'Waste (radioactive)', 'Transport', 'Energy', 'Climate change', 'Poverty', 'Education', 'Finance', 'Science', 'Sustainable development for Africa', 'Institutional arrangements', 'Desertification and Drought', 'Protecting and managing the natural resources', 'Rural Development', 'Sustainable development of SIDS'], 
+                ['Conflicts Resolution'], 
+                ['Population and housing censuses', 'International migration', 'Civil registration systems', 'Demographic and social surveys', 'Crime and criminal justice statistics', 'Disability Statistics', 'Services Statistics', 'Official statistics, principles and practices', 'National accounting', 'Methodological publications in statistics', 'Labour and Compensation', 'Statistical activities classification', 'Poverty statistics', 'Informal Sector Statistics', 'International Comparison Programme', 'Social Statistics and Social Monitoring', 'Household Statistics', 'Geographical names', 'Country or region codes', 'International Economic and Social Classifications', 'Statistics on international trade in services', 'Time-use statistics', 'Environmental Accounts', 'Price and Quantity Statistics', 'Development indicators'], 
+                ['International migration', 'Population growth', 'Population structure', 'Morbidity and mortality', 'Reproduction, family formation and the status of women', 'Population distribution and internal migration'], 
+                ['Socio-Economic Governance and Management', 'Knowledge Systems and E-government', 'Public Service and Management Innovation', 'Ethics, Transparency and Accountability', 'Governance and Public Administration', 'Public Financial Management']
             ],
 
             // Selected values
@@ -179,8 +182,8 @@ export default {
                 ngoNum: 5,
                 hq: [],
                 scope: [],
-                established: [1950, 2022],
-                members: [1, 500],
+                established: [1625, 2022],
+                members: [1, 10000],
                 fundings: [],
                 languages: [],
                 description: "",
