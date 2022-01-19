@@ -70,7 +70,7 @@ export default {
                 'activities': activities
             }
 
-            const res = await fetch('http://192.168.119.232:3002/recommended', {
+            const res = await fetch('http://localhost:3001/recommended', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',

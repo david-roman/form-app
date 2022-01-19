@@ -17,7 +17,7 @@ export default {
     emits: ['change-val'],
     data() { 
         return {
-            value: 5
+            value: 3
         }
     }
 }

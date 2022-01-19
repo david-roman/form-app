@@ -123,12 +123,12 @@ export default {
 
             // Form values
             minNGOs: 1,
-            maxNGOs: 20,
-            minYear: 1149,
+            maxNGOs: 10,
+            minYear: 1800,
             maxYear: 2020,
     
             minMembers: 1,
-            maxMembers: 109000,
+            maxMembers: 5000,
 
             continents: Object.values(continents).sort(),
             countries: Object.keys(countries).map(key => countries[key].name).sort(),
@@ -179,7 +179,7 @@ export default {
 
             // Selected values
             reqs: {
-                ngoNum: 5,
+                ngoNum: 3,
                 hq: [],
                 scope: [],
                 established: [1625, 2022],
